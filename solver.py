@@ -1,5 +1,5 @@
 import boards
-
+# Test that this git thing actually works
 board = boards.board_medium  # initialize grids (board and cells)
 cells = [[], [], [], [], [], [], [], [], []]
 solved = 0
