@@ -7,15 +7,51 @@ board1 = [[3, 0, 0, 6, 0, 7, 0, 9, 0],
           [4, 6, 1, 0, 0, 0, 5, 0, 8],
           [0, 3, 0, 2, 6, 0, 9, 1, 0],
           [0, 0, 2, 1, 0, 0, 3, 0, 6]]
-board = [[7, 9, 0, 2, 0, 0, 0, 0, 0],
-         [0, 0, 3, 9, 5, 4, 6, 8, 7],
-         [4, 6, 8, 3, 1, 7, 9, 5, 0],
-         [0, 5, 0, 8, 0, 2, 0, 1, 6],
-         [9, 7, 0, 0, 0, 6, 5, 3, 8],
-         [0, 0, 1, 0, 0, 0, 2, 0, 4],
-         [0, 4, 0, 6, 2, 3, 0, 7, 1],
-         [0, 1, 0, 0, 0, 0, 3, 2, 5],
-         [2, 3, 0, 0, 8, 1, 4, 0, 9]]
+board_flash_1 = [[7, 9, 0, 2, 0, 0, 0, 0, 0],
+                 [0, 0, 3, 9, 5, 4, 6, 8, 7],
+                 [4, 6, 8, 3, 1, 7, 9, 5, 0],
+                 [0, 5, 0, 8, 0, 2, 0, 1, 6],
+                 [9, 7, 0, 0, 0, 6, 5, 3, 8],
+                 [0, 0, 1, 0, 0, 0, 2, 0, 4],
+                 [0, 4, 0, 6, 2, 3, 0, 7, 1],
+                 [0, 1, 0, 0, 0, 0, 3, 2, 5],
+                 [2, 3, 0, 0, 8, 1, 4, 0, 9]]
+board_flash_2 = [[8, 0, 9, 4, 2, 1, 7, 0, 6],
+                 [0, 0, 6, 8, 9, 0, 5, 4, 0],
+                 [3, 2, 0, 0, 5, 6, 1, 0, 0],
+                 [0, 0, 1, 0, 3, 0, 2, 0, 7],
+                 [0, 0, 5, 0, 1, 8, 3, 9, 0],
+                 [6, 0, 3, 2, 4, 7, 8, 0, 1],
+                 [0, 3, 2, 0, 0, 0, 9, 0, 8],
+                 [0, 6, 0, 9, 7, 5, 4, 0, 0],
+                 [0, 4, 7, 3, 0, 2, 0, 1, 5]]
+board_easy = [[3, 8, 6, 0, 0, 0, 9, 4, 0],
+              [1, 0, 4, 0, 2, 0, 0, 5, 0],
+              [7, 0, 5, 0, 0, 0, 0, 0, 3],
+              [2, 0, 1, 0, 0, 0, 0, 8, 4],
+              [6, 0, 3, 0, 0, 0, 0, 7, 9],
+              [9, 7, 0, 1, 0, 0, 0, 0, 5],
+              [5, 6, 2, 9, 8, 0, 0, 0, 7],
+              [0, 1, 0, 2, 0, 3, 0, 0, 8],
+              [0, 0, 0, 4, 7, 0, 6, 0, 1]]
+board = [[2, 9, 0, 0, 0, 0, 0, 8, 0],
+         [0, 0, 3, 7, 0, 0, 0, 9, 0],
+         [0, 0, 0, 0, 5, 0, 0, 0, 0],
+         [8, 1, 0, 3, 4, 0, 6, 0, 5],
+         [6, 0, 0, 0, 0, 0, 2, 0, 0],
+         [0, 0, 0, 5, 0, 0, 0, 0, 0],
+         [5, 8, 1, 0, 2, 0, 7, 4, 9],
+         [0, 0, 0, 0, 1, 7, 3, 0, 0],
+         [0, 0, 6, 4, 0, 0, 0, 2, 1]]
+board_hard = [[0, 9, 0, 0, 0, 2, 0, 0, 0],
+              [7, 0, 8, 3, 0, 0, 0, 0, 0],
+              [6, 2, 3, 0, 0, 0, 0, 0, 7],
+              [8, 1, 6, 0, 0, 0, 0, 2, 0],
+              [0, 3, 0, 0, 0, 0, 0, 0, 9],
+              [0, 5, 4, 6, 0, 0, 0, 0, 0],
+              [0, 0, 0, 0, 4, 0, 9, 0, 3],
+              [4, 0, 0, 0, 0, 0, 1, 0, 0],
+              [0, 7, 9, 0, 0, 0, 0, 6, 8]]
 cells = [[], [], [], [], [], [], [], [], []]
 corners = [3, 6, 9]
 
@@ -31,7 +67,8 @@ class Cell(object):
         self.column = column
         self.value = value
         self.possible = []
-        self.box = [closest(corners, self.row) - 1, closest(corners, self.column) - 1]
+        # self.box = [closest(corners, self.row) - 1, closest(corners, self.column) - 1]
+        self.box = [int(row / 3) * 3 + 2, int(column / 3) * 3 + 2]
 
     def calc_possibles(self, grid):
         self.possible.clear()
@@ -48,6 +85,7 @@ class Cell(object):
                 for column in range(self.box[1] - 2, self.box[1] + 1):
                     if grid[row][column] in self.possible:
                         self.possible.remove(grid[row][column])
+            print(" ")
 
 
 def create_cells(grid):
@@ -55,6 +93,13 @@ def create_cells(grid):
         for column in range(9):
             base_value = grid[row][column]
             cells[row].append(Cell(row, column, base_value))
+
+
+def print_board():
+    for row in cells:
+        for cell in row:
+            print(cell.value, end=' ')
+        print("")
 
 
 def get_possibles(grid):
@@ -69,12 +114,36 @@ for row in cells:
         print(cell.value, end=' ')
     print("")
 
+
+def solve_unique():
+    global board, cells
+    count = 0
+    found_row = 0
+    found_col = 0
+    for g_row in range(3):
+        for g_col in range(3):
+            for num in range(1, 10):
+                count = 0
+                for row in range(3):
+                    for col in range(3):
+                        if num in cells[g_row * 3 + row][g_col * 3 + col].possible:
+                            count += 1
+                            found_row = g_row * 3 + row
+                            found_col = g_col * 3 + col
+                if count == 1:
+                    cells[found_row][found_col].possible = [num]
+                    cells[found_row][found_col].value = num
+                    board[found_row][found_col] = cells[found_row][found_col].value
+
+
 solved = 0
 runs = 0
-while True:
-    if runs > 500:
-        break
+changed = True
+while changed:
     # get_possibles(board)
+    get_possibles(board)
+    solve_unique()
+    changed = False
     for row in range(9):
         for column in range(9):
             cells[row][column].calc_possibles(board)
@@ -83,6 +152,8 @@ while True:
                 board[row][column] = cells[row][column].possible[0]
                 cells[row][column].possible.clear()
                 solved += 1
+                changed = True
+
     runs += 1
 
 print("\n \n \n")
@@ -91,5 +162,6 @@ for row in cells:
         print(cell.value, end=' ')
     print("")
 print(solved)
+print(runs)
 cells[0][8].calc_possibles(board)
 print(cells[0][8].possible)
