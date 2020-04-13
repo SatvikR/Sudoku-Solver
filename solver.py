@@ -1,10 +1,12 @@
 import boards
-# Test that this git thing actually works
+
 board = boards.board_medium  # initialize grids (board and cells)
 cells = [[], [], [], [], [], [], [], [], []]
 solved = 0
 runs = 0
 changed = True
+solved_with_unique = 0
+solved_simple = 0
 
 
 class Cell(object):
@@ -57,7 +59,8 @@ def setup(grid):  # sets up grid and prints initial board
     print_board()
 
 
-def solve_unique():  # solves cells that instead of having one possible value, have a unique possible value
+def solve_unique_sub():  # solves unique possibles in each sub-grid
+    global solved, solved_with_unique
     found_row = 0
     found_col = 0
     for g_row in range(3):
@@ -71,13 +74,59 @@ def solve_unique():  # solves cells that instead of having one possible value, h
                             found_row = g_row * 3 + row
                             found_col = g_col * 3 + col
                 if count == 1:
-                    cells[found_row][found_col].possible = [num]
                     cells[found_row][found_col].value = num
                     board[found_row][found_col] = cells[found_row][found_col].value
+                    solved += 1
+                    solved_with_unique += 1
+
+
+def solve_unique_row(): # solves unique possibles in each row
+    global solved, solved_with_unique
+    found_row = 0
+    found_col = 0
+    for row in range(9):
+        for num in range(9):
+            count = 0
+            for col in range(9):
+                if num in cells[row][col].possible:
+                    count += 1
+                    found_row = row
+                    found_col = col
+            if count == 1:
+                cells[found_row][found_col].value = num
+                board[found_row][found_col] = num
+                solved += 1
+                solved_with_unique += 1
+
+
+def solve_unique_column(): # solves unique possibles in each column
+    global solved, solved_with_unique
+    found_row = 0
+    found_col = 0
+    for col in range(9):
+        for num in range(9):
+            count = 0
+            for row in range(9):
+                if num in cells[row][col]:
+                    found_row = row
+                    found_col = col
+                    count += 1
+            if count == 1:
+                cells[found_row][found_col].value = num
+                board[found_row][found_col] = num
+                solved += 1
+                solved_with_unique += 1
+
+
+def solve_uniques():
+    get_possibles(board)
+    solve_unique_sub()
+    get_possibles(board)
+    solve_unique_row()
 
 
 def solve_simples():  # solves cells with only one possible value
-    global changed, solved
+    global changed, solved, solved_simple
     for row in range(9):
         for column in range(9):
             cells[row][column].calc_possibles(board)
@@ -87,16 +136,23 @@ def solve_simples():  # solves cells with only one possible value
                 cells[row][column].possible.clear()
                 solved += 1
                 changed = True
+                solved_simple += 1
 
 
-setup(board)
-while changed: # main solving loop that breaks when the board doesn't change
-    get_possibles(board)
-    solve_unique()
-    changed = False
-    solve_simples()
-    runs += 1
+def main():
+    global runs, board, changed
+    setup(board)
+    while changed:  # main solving loop that breaks when the board doesn't change
+        solve_uniques()
+        changed = False
+        solve_simples()
+        runs += 1
 
-print("\nSolved board: ")
-print_board()
-print("solved", solved, "cells in", runs, "runs")
+    print("\nSolved board: ")
+    print_board()
+    print("solved %d cells in %d runs" % (solved, runs))
+    print("solved %d cells using unique func" % solved_with_unique)
+    print("solved %d cells using simple func" % solved_simple)
+
+
+main()
