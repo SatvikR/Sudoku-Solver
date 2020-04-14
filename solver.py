@@ -1,13 +1,13 @@
 import boards
 
-board = boards.board_medium  # initialize grids (board and cells)
+board = boards.board_hard  # initialize grids (board and cells)
 cells = [[], [], [], [], [], [], [], [], []]
 solved = 0
 runs = 0
 changed = True
 solved_with_unique = 0
 solved_simple = 0
-
+finished = False
 
 class Cell(object):
     def __init__(self, row, column, value):
@@ -140,7 +140,7 @@ def solve_simples():  # solves cells with only one possible value
 
 
 def main():
-    global runs, board, changed
+    global runs, board, changed, finished
     setup(board)
     while changed:  # main solving loop that breaks when the board doesn't change
         solve_uniques()
@@ -153,6 +153,7 @@ def main():
     print("solved %d cells in %d runs" % (solved, runs))
     print("solved %d cells using unique func" % solved_with_unique)
     print("solved %d cells using simple func" % solved_simple)
+    finished = True
+    return board
 
-
-main()
+#main()
