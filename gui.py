@@ -2,7 +2,6 @@ import sys
 import pygame
 from pygame.locals import *
 from colors import *
-from boards import board_medium
 import solver
 
 pygame.init()
@@ -19,32 +18,45 @@ button_font = pygame.font.SysFont('Consolas', 35)
 button = button_font.render("Solve", False, BLACK)
 title_font = pygame.font.SysFont('Consolas', 50)
 title = title_font.render("Sudoku Solver", False, BLACK)
+pos_font = pygame.font.SysFont("Arial", 25)
 unsolved_cords = []
+
 
 def draw_board():
     global screen
     for row in range(3):
         for col in range(3):
-            pygame.draw.rect(screen, BLACK, (100 + (row * 200), 100 + (col * 200), 200, 200), 5)
+            pygame.draw.rect(screen, BLACK, (100 + (col * 200), 100 + (row * 200), 200, 200), 5)
     for row in range(9):
         for col in range(9):
-            pygame.draw.rect(screen, BLACK, (100 + (row * 600/9), 100 + (col * 600/9), 66, 66), 2)
+            pygame.draw.rect(screen, BLACK, (100 + (col * 600 / 9), 100 + (row * 600 / 9), 66, 66), 2)
+
 
 def draw_cells(board):
     for row in range(9):
         for col in range(9):
-            if board[row][col] != 0:
+            if board[col][row] != 0:
                 if (row, col) in unsolved_cords:
-                    text_surface = my_font.render(str(board[row][col]), False, BLUE)
+                    text_surface = my_font.render(str(board[col][row]), False, BLUE)
                     screen.blit(text_surface, (125 + (row * 600 / 9), 110 + (col * 600 / 9)))
                 else:
-                    text_surface = my_font.render(str(board[row][col]), False, BLACK)
-                    screen.blit(text_surface, (125 + (row * 600/9), 110 + (col * 600/9)))
+                    text_surface = my_font.render(str(board[col][row]), False, BLACK)
+                    screen.blit(text_surface, (125 + (row * 600 / 9), 110 + (col * 600 / 9)))
             else:
                 unsolved_cords.append((row, col))
-# Game loop.
+                possibles = ""
+                if solver.finished:
+                    for num in solver.cells[col][row].possible:
+                        possibles += (" %d" % num)
+                    for i, num in enumerate(solver.cells[col][row].possible):
+                        y = int(i / 3)
+                        x = i - (3 * y)
+                        text = pos_font.render(str(num), False, RED)
+                        screen.blit(text, (107 + (row * 600 / 9) + (x * 22), 110 + (col * 600 / 9) + (y * 22)))
+
+
 while True:
-    screen.fill((255, 255, 255))
+    screen.fill(WHITE)
 
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -53,7 +65,7 @@ while True:
         if event.type == MOUSEBUTTONDOWN:
             x, y = event.pos
             if 350 < x < 450 and 725 < y < 775:
-                if solver.finished == False:
+                if not solver.finished:
                     solver.main()
 
     # Draw

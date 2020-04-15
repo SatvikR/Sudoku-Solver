@@ -156,4 +156,3 @@ def main():
     finished = True
     return board
 
-#main()

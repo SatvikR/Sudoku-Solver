@@ -20,11 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f625964d-7797-4177-9d48-6639fd1c1954" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../Sudoku-Solver/colors.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Sudoku-Solver/gui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Sudoku-Solver/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Sudoku-Solver/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Sudoku-Solver/.idea/dictionaries/reddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Sudoku-Solver/.idea/dictionaries/reddy.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Sudoku-Solver/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Sudoku-Solver/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Sudoku-Solver/boards.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../Sudoku-Solver/boards.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Sudoku-Solver/colors.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../Sudoku-Solver/colors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Sudoku-Solver/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../Sudoku-Solver/gui.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Sudoku-Solver/solver.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../Sudoku-Solver/solver.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -139,38 +139,38 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1586903940079" />
-    <state width="1899" height="280" key="GridCell.Tab.0.bottom" timestamp="1586907605772">
+    <state width="1899" height="280" key="GridCell.Tab.0.bottom" timestamp="1586927747696">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1920" height="300" key="GridCell.Tab.0.bottom.inPresentationMode" timestamp="1586808222432">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1920" height="300" key="GridCell.Tab.0.bottom.inPresentationMode/0.0.1920.1040@0.0.1920.1040" timestamp="1586808222432" />
-    <state width="1899" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586907605772" />
-    <state width="1899" height="280" key="GridCell.Tab.0.center" timestamp="1586907605772">
+    <state width="1899" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586927747696" />
+    <state width="1899" height="280" key="GridCell.Tab.0.center" timestamp="1586927747695">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1920" height="300" key="GridCell.Tab.0.center.inPresentationMode" timestamp="1586808222432">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1920" height="300" key="GridCell.Tab.0.center.inPresentationMode/0.0.1920.1040@0.0.1920.1040" timestamp="1586808222432" />
-    <state width="1899" height="280" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586907605772" />
-    <state width="1899" height="280" key="GridCell.Tab.0.left" timestamp="1586907605772">
+    <state width="1899" height="280" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586927747695" />
+    <state width="1899" height="280" key="GridCell.Tab.0.left" timestamp="1586927747695">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1920" height="300" key="GridCell.Tab.0.left.inPresentationMode" timestamp="1586808222432">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1920" height="300" key="GridCell.Tab.0.left.inPresentationMode/0.0.1920.1040@0.0.1920.1040" timestamp="1586808222432" />
-    <state width="1899" height="280" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586907605772" />
-    <state width="1899" height="280" key="GridCell.Tab.0.right" timestamp="1586907605772">
+    <state width="1899" height="280" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586927747695" />
+    <state width="1899" height="280" key="GridCell.Tab.0.right" timestamp="1586927747696">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1920" height="300" key="GridCell.Tab.0.right.inPresentationMode" timestamp="1586808222432">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1920" height="300" key="GridCell.Tab.0.right.inPresentationMode/0.0.1920.1040@0.0.1920.1040" timestamp="1586808222432" />
-    <state width="1899" height="280" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586907605772" />
+    <state width="1899" height="280" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586927747696" />
     <state x="461" y="165" key="SettingsEditor" timestamp="1586808570563">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
