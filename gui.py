@@ -52,7 +52,7 @@ def draw_cells(board):
                         y = int(i / 3)
                         x = i - (3 * y)
                         text = pos_font.render(str(num), False, RED)
-                        screen.blit(text, (107 + (row * 600 / 9) + (x * 22), 110 + (col * 600 / 9) + (y * 22)))
+                        screen.blit(text, (107 + (row * 600 / 9) + (x * 22), 100 + (col * 600 / 9) + (y * 22)))
 
 
 while True:
