@@ -72,19 +72,20 @@ def draw_cells(board):
 def animation():
     solver.main()
     draw_unsolved(grid)
-    draw_board()
     screen.blit(title, (width / 2 - title.get_width() / 2, 25))
     load_text = "Solving..."
     loading = load_font.render(load_text, True, BLACK)
     screen.blit(loading, (352.5, 735))
     for run in solver.solved_values:
         for cell in run:
+            draw_board()
             row = cell.column
             col = cell.row
             value = my_font.render(str(cell.value), True, BLUE)
             screen.blit(value, (125 + (row * 600 / 9), 110 + (col * 600 / 9)))
+            pygame.draw.rect(screen, RED, (100 + (row * 600 / 9), 100 + (col * 600 / 9), 66, 66), 2)
             pygame.display.flip()
-        sleep(0.5)
+            sleep(0.25)
 
 
 while True:
