@@ -1,6 +1,7 @@
 import boards
+import backtrack
 
-board = boards.board_hard_4  # initialize grids (board and cells)
+board = boards.board_hard_1  # initialize grids (board and cells)
 cells = [[], [], [], [], [], [], [], [], []]
 pairs = [[num1, num2] for num1 in range(1, 9) for num2 in range(num1 + 1, 10)]
 solved = 0
@@ -12,6 +13,7 @@ finished = False
 pair_counter = 0
 current_values = []
 solved_values = []
+unsolved = []
 
 
 class Cell(object):
@@ -50,9 +52,9 @@ def create_cells(grid):  # creates cell grid that matches given board
 
 
 def print_board():  # prints board in correct order
-    for row in cells:
+    for row in board:
         for cell in row:
-            print(cell.value, end=' ')
+            print(cell, end=' ')
         print("")
 
 
@@ -232,6 +234,18 @@ def solve_row_pairs():
                             if num not in cells[row][col].not_possible:
                                 cells[row][col].not_possible.append(num)
 
+def get_unsolved():
+    for row in range(9):
+        for col in range(9):
+            if cells[row][col].value == 0:
+                unsolved.append(cells[row][col])
+
+def get_new():
+    for row in range(9):
+        for col in range(9):
+            if cells[row][col] in unsolved:
+                cells[row][col].value = board[row][col]
+                current_values.append(cells[row][col])
 
 def main():
     global runs, board, changed, finished, solved_values
@@ -247,6 +261,12 @@ def main():
         solve_simples()
         if solved_temp == solved:
             unchanged_runs += 1
+            if unchanged_runs == 3:
+                get_unsolved()
+                backtrack.solve_sudoku(board)
+                get_new()
+                solved_values.append([num for num in current_values])
+                current_values.clear()
         else:
             runs += 1
             solved_values.append([num for num in current_values])
@@ -259,3 +279,4 @@ def main():
     print("solved %d cells using simple func" % solved_simple)
     print("Found %d pairs" % pair_counter)
     finished = True
+    print_board()
