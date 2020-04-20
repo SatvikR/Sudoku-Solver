@@ -10,6 +10,8 @@ solved_with_unique = 0
 solved_simple = 0
 finished = False
 pair_counter = 0
+current_values = []
+solved_values = []
 
 
 class Cell(object):
@@ -83,6 +85,7 @@ def solve_unique_sub():  # solves unique possibles in each sub-grid
                     cells[found_row][found_col].value = num
                     board[found_row][found_col] = cells[found_row][found_col].value
                     solved += 1
+                    current_values.append(cells[found_row][found_col])
                     solved_with_unique += 1
                     changed = True
 
@@ -103,6 +106,7 @@ def solve_unique_row():  # solves unique possibles in each row
                 cells[found_row][found_col].value = num
                 board[found_row][found_col] = num
                 solved += 1
+                current_values.append(cells[found_row][found_col])
                 solved_with_unique += 1
                 changed = True
 
@@ -123,6 +127,7 @@ def solve_unique_column():  # solves unique possibles in each column
                 cells[found_row][found_col].value = num
                 board[found_row][found_col] = num
                 solved += 1
+                current_values.append(cells[found_row][found_col])
                 solved_with_unique += 1
                 changed = True
 
@@ -144,6 +149,7 @@ def solve_simples():  # solves cells with only one possible value
                 board[row][column] = cells[row][column].possible[0]
                 cells[row][column].possible.clear()
                 solved += 1
+                current_values.append(cells[row][column])
                 changed = True
                 solved_simple += 1
 
@@ -228,7 +234,7 @@ def solve_row_pairs():
 
 
 def main():
-    global runs, board, changed, finished
+    global runs, board, changed, finished, solved_values
     setup(board)
     unchanged_runs = 0
     while (unchanged_runs < 3):  # main solving loop that breaks when the board doesn't change
@@ -243,6 +249,8 @@ def main():
             unchanged_runs += 1
         else:
             runs += 1
+            solved_values.append([num for num in current_values])
+            current_values.clear()
 
     print("\nSolved board: ")
     print_board()
@@ -251,4 +259,3 @@ def main():
     print("solved %d cells using simple func" % solved_simple)
     print("Found %d pairs" % pair_counter)
     finished = True
-    return board
