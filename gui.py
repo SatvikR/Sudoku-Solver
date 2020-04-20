@@ -71,14 +71,14 @@ def draw_cells(board):
 
 def animation():
     solver.main()
+    draw_unsolved(grid)
+    draw_board()
+    screen.blit(title, (width / 2 - title.get_width() / 2, 25))
+    load_text = "Solving..."
+    loading = load_font.render(load_text, True, BLACK)
+    screen.blit(loading, (352.5, 735))
     for run in solver.solved_values:
         for cell in run:
-            screen.blit(title, (width / 2 - title.get_width() / 2, 25))
-            load_text = "Solving..."
-            loading = load_font.render(load_text, True, BLACK)
-            screen.blit(loading, (352.5, 735))
-            draw_unsolved(grid)
-            draw_board()
             row = cell.column
             col = cell.row
             value = my_font.render(str(cell.value), True, BLUE)
