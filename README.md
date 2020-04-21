@@ -1,6 +1,5 @@
 # Sudoku-Solver
-A python sudoku solver that solves sudoku like a human along with a combination of backtracking.
-The combination of logic and brute force increases time to solve
-As of now this only works on easy-medium level sudokus
-The program will solve the board that is named board so make sure that you rename the board you want to use to board.
-Also it has a simple animation to show how it is solved.
+A Sudoku Solver that uses various techniques to decrease solve time such as:
+- Combination of logically solving and backtracking (rather than completely backtracking)
+- I think that's the only thing </br >
+Run gui.py to run (not solver.py). Make sure you are using python 3 and have pygame installed aswell.
